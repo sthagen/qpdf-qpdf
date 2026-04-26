@@ -23,6 +23,13 @@ more detail.
       that could cause qpdf to throw a logic error when error when copying pages with damaged
       annotations.
 
+    - Fix failure in QPDFWriter when trailer ``/ID`` entries are invalid.
+
+    - Limit the effect of ``QPDF::setMaxWarnings`` to the initial loading of the PDF file.
+      Any exceptions thrown as a result of the warning limit being exceeded indicate that
+      the file is too damaged to be processed. Throwing the exception after the file is loaded
+      risks that it would be treated like other exceptions that permit further processing.
+
 12.3.2: January 24, 2026
   - Bug fixes
 
