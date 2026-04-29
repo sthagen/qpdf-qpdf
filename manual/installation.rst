@@ -90,6 +90,12 @@ Maintainer Dependencies
   <https://github.com/CastXML/CastXML>`__, which is used by
   ``check_abi`` to generate sizes of all public classes.
 
+- Maintainer mode requires Python 3 for generating files, building
+  documentation, and possibly other activities.
+
+- In maintainer mode, you must have ``bash`` version ≥ and ``zsh``
+  version ≥ 5 for shell completion tests to pass.
+
 Additional Requirements on Windows
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -332,6 +338,10 @@ GENERATE_AUTO_JOB
   :file:`manual/cli.rst` in the qpdf sources, you should turn this on.
   This option requires Python 3.
 
+REQUIRE_SHARED Automated tests for shell completion are ordinarily
+  skipped if new enough versions of the shells are not available. With
+  this option, lack of shell availability causes a test failure.
+
 WERROR
   Make any compiler warnings into errors. We want qpdf to compile free
   of warnings whenever possible, but there's always a chance that a
@@ -370,6 +380,8 @@ MAINTAINER_MODE
   - ``WERROR``
 
   - ``REQUIRE_NATIVE_CRYPTO``
+
+  - ``REQUIRE_SHELLS``
 
   It is possible to turn ``BUILD_DOC`` off in maintainer mode so that
   the extra requirements for building documentation don't have to be

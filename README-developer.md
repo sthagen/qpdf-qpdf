@@ -640,7 +640,14 @@ Adding a new option table is a bit harder and is not well-documented.
 For a simple example, look at the code that added the
 --set-page-labels table. That change was divided into two commits (one
 for the manual changes, and one for the generated changes) to make it
-easier to use as an example.
+easier to use as an example. Note that, when adding an options table,
+you must call selectOptionTable from the arg handler in
+QPDFJob_argv.cc *and you must also* set the triggers on job.yml. The
+triggers in job.yml is used to update the table state in the shell
+completion function code, but it is not used (as of 2026-04 when the
+completion code was rewritten) to change the actual argument state.
+Adding a test to completion.test to make sure completion for the new
+options table is a good idea.
 
 The build will fail until the new option is documented in
 manual/cli.rst. To do that, create documentation for the option by

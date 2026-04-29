@@ -44,6 +44,9 @@ CMAKE_DEPENDENT_OPTION(
   ENABLE_QTC "Enable QTC test coverage" OFF
   "NOT MAINTAINER_MODE" ON)
 CMAKE_DEPENDENT_OPTION(
+  REQUIRE_SHELLS "Require shells for completion testing" OFF
+  "NOT MAINTAINER_MODE" ON)
+CMAKE_DEPENDENT_OPTION(
   SHOW_FAILED_TEST_OUTPUT "Show qtest output on failure" OFF
   "NOT CI_MODE" ON)
 
@@ -122,6 +125,12 @@ if(ENABLE_QTC)
 else()
   add_compile_definitions(QPDF_DISABLE_QTC=1)
   set(ENABLE_QTC_ARG --disable-tc)
+endif()
+
+if(REQUIRE_SHELLS)
+  set(REQUIRE_SHELLS_ENV --env REQUIRE_SHELLS=1)
+else()
+  set(REQUIRE_SHELLS_ENV)
 endif()
 
 if(FUTURE)
@@ -341,6 +350,10 @@ set(auto_job_outputs
   libqpdf/qpdf/auto_job_schema.hh
   libqpdf/qpdf/auto_job_json_decl.hh
   libqpdf/qpdf/auto_job_json_init.hh
+  libqpdf/qpdf/auto_job_completion_zsh.hh
+  libqpdf/qpdf/auto_job_completion_bash.hh
+  completions/bash/qpdf
+  completions/zsh/_qpdf
   manual/qpdf.1
 )
 

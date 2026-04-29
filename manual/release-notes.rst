@@ -30,6 +30,23 @@ more detail.
       the file is too damaged to be processed. Throwing the exception after the file is loaded
       risks that it would be treated like other exceptions that permit further processing.
 
+  - Enhancements
+
+    - Rewrite the shell completion functions for zsh and bash. In prior versions
+      of qpdf, the qpdf executable itself was used to provide completion
+      functionality. This was unreliable (didn't work right with spaces in
+      executable name, though there was a workaround), had various bugs when
+      qpdf was wrapped, and was potentially insecure as it could leak sensitive
+      arguments into the environment. The new approach uses ``job.yml`` to
+      autogenerate the completion functions from the same metadata that is used
+      to generate the command-line argument parsing code.
+
+  - Build changes
+
+    - The new ``REQUIRE_SHELLS`` CMake option causes completion tests to fail if
+      a new enough bash and zsh are not installed. This option is enabled by
+      default in maintainer mode.
+
 12.3.2: January 24, 2026
   - Bug fixes
 

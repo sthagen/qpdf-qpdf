@@ -36,7 +36,6 @@ QPDFArgParser single dash 0
 QPDFArgParser help option 0
 QPDFArgParser positional 0
 QPDFArgParser unrecognized 0
-QPDFArgParser complete choices 0
 JSON parse junk after object 0
 JSON parse invalid keyword 0
 JSON parse expected colon 0
